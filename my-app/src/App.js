@@ -1,29 +1,28 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
-// Components for each "page"
-const Home = () => <h1>Welcome to the Home Page</h1>;
-const About = () => <h1>About Us: We create awesome apps!</h1>;
-const Profile = () => <h1>Your Profile Page</h1>;
-
+import React, { useState } from 'react'
+import {Navigate, Route, Routes} from 'react-router-dom'
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Home from './pages/Home';
+import RefreshHandler from './RefreshHandler';
 function App() {
-  return (
-    <Router>
-      {/* Navigation Menu */}
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/" style={{ margin: "0 10px" }}>Home</Link>
-        <Link to="/about" style={{ margin: "0 10px" }}>About</Link>
-        <Link to="/profile" style={{ margin: "0 10px" }}>Profile</Link>
-      </nav>
+  const [isAuthenticated, setisAuthenticated] = useState(false);
 
-      {/* Routes to render pages */}
+  const PrivateRoute= ({element})=>{
+    return isAuthenticated? element : <Navigate to = '/login' />
+  }
+  return (
+    <div className='App'>
+      <RefreshHandler setisAuthenticated={setisAuthenticated}/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path='/' element={<Navigate to='/login' />} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<SignUp/>} />
+        <Route path='/home' element={<PrivateRoute element={<Home/>}/>} />
+
       </Routes>
-    </Router>
-  );
+
+    </div>
+  )
 }
 
-export default App;
+export default App
