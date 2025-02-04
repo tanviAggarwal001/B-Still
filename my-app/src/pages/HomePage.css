@@ -1,0 +1,62 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background: #f5f7fa;
+    overflow: hidden;
+  }
+  
+  .sidebar {
+    position: fixed;
+    width: 220px;
+    background: #2c3e50;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #bdc3c7;
+  }
+  
+  .profile a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .tab-buttons button {
+    background: none;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  
+  .tab-buttons button.active,
+  .tab-buttons button:hover {
+    background: #1abc9c;
+    border-radius: 5px;
+  }
+  
+  .tab-content {
+    margin-left: 220px;
+    padding: 30px;
+    background: #ffffff;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
