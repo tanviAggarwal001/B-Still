@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background: #ecf0f1;
+    color: #34495e;
   }
   
   .home-container {
@@ -53,7 +54,7 @@ body {
   }
   
   .cta-button:hover {
-    background: #34495e;
+    background: #16a085;
   }
   
   .features-section {
@@ -110,4 +111,3 @@ body {
     font-size: 20px;
     color: #0b0b0b;
   }
-  
