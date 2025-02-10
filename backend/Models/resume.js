@@ -13,10 +13,6 @@ const resumeSchema = mongoose.Schema({
 			country: { type: String }
 		}
 	},
-	summary: {
-		short_bio: { type: String },
-		objective: { type: String }
-	},
 	education: [{
 		degree: { type: String },
 		university: { type: String },
@@ -38,7 +34,8 @@ const resumeSchema = mongoose.Schema({
 	projects: [{
 		name: { type: String },
 		description: { type: String },
-		technologies_used: [{ type: String }]
+		technologies_used: [{ type: String }],
+		link: { type: String }  // Added project link field
 	}],
 	work_experience: [{
 		role: { type: String },
@@ -63,6 +60,14 @@ const resumeSchema = mongoose.Schema({
 		position: { type: String },
 		university: { type: String },
 		email: { type: String }
+	}],
+	extracurricular_activities: [{
+		role: { type: String },
+		organization: { type: String },
+		start_date: { type: String },
+		end_date: { type: String },
+		description: { type: String },
+		achievements: [{ type: String }]
 	}]
 }, { timestamps: true });
 
