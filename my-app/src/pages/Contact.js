@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Create() {
+function Contact() {
   return (
     <div className="w-4/5 mx-auto py-10">
       <h1 className="text-4xl text-center text-gray-800 mb-6">Contact Us</h1>
@@ -26,4 +26,4 @@ function Create() {
   )
 }
 
-export default Create
+export default Contact

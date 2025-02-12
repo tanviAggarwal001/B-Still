@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { handleError, handleSuccess } from '../utils';
 import ResumeForm from '../components/ResumeForm';
-import './Create.css'; // Import normal CSS
+// import './Create.css'; // Import normal CSS
 
 function Create() {
   const [isLoading, setIsLoading] = useState(false);

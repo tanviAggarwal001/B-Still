@@ -50,7 +50,7 @@ const Tutorials = () => {
     <div className="w-4/5 mx-auto py-10">
       {tutorials.map((tutorial) => (
         <div key={tutorial.id} className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">{tutorial.title}</h2>
+          <h2 className="text-3xl font-bold text-red-800 mb-4">{tutorial.title}</h2>
           <p className="text-lg text-gray-700 mb-4">{tutorial.description}</p>
           <ul className="list-disc list-inside text-gray-700 mb-4">
             {tutorial.tips.map((tip, index) => (
@@ -65,7 +65,7 @@ const Tutorials = () => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="w-full h-96 rounded-lg"
+              className="w-full h-85 rounded-lg"
             ></iframe>
           </div>
         </div>
