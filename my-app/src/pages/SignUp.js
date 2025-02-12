@@ -32,7 +32,7 @@ const SignupPage = () => {
     }
 
     try {
-      const url = "http://localhost:5000/auth/signup";
+      const url = "http://https://b-still-backend.onrender.com:5000/auth/signup";
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
