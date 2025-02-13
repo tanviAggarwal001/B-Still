@@ -2,7 +2,7 @@ import React from 'react'
 
 function Contact() {
   return (
-    <div className="w-4/5 mx-auto py-10">
+    <div className="w-4/5  py-10">
       <h1 className="text-4xl text-center text-gray-800 mb-6">Contact Us</h1>
       <p className="text-gray-600 text-lg text-center mb-8">
         Have any questions or need help with your resume? Feel free to reach out!

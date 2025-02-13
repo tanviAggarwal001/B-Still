@@ -6,8 +6,19 @@ body {
     height: 100vh;
     background: #f5f7fa;
     overflow: hidden;
+    /* width: 100%; */
+  }
+
+  .homepage {
+    padding: 0;
+    margin: 0;
+    width: 100%;
   }
   
+  .NameWelcome{
+    color: black;
+    font-size: 100px;
+  }
   .sidebar {
     position: fixed;
     width: 220px;
@@ -58,5 +69,6 @@ body {
     background: #ffffff;
     height: 100vh;
     overflow-y: auto;
+    /* width: 100%; */
   }
   

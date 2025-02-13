@@ -10,7 +10,7 @@ import Tutorials from "./Tutorials"
 import CheckATS from "./CheckATS";
 import YourWork from "./YourWork";
 import Create from "./Create";
-import "./Home.css"
+// import "./Home.css"
 import { handleSuccess } from "../utils"; // Utility for showing success message
 import "./HomePage.css"; // Add your CSS for the main Home component
 
@@ -57,7 +57,7 @@ function Home() {
 
   return (
     <div>
-      <h1 style={{color: "#1abc9c"}}>Welcome, {logginUser || "Guest"}</h1>
+      {/* <h1 className="NameWelcome">Welcome, {logginUser || "Guest"}</h1> */}
       <div className="homepage">
         <div className="sidebar">
       <button onClick={handleLogout}           style={{ 

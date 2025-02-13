@@ -11,7 +11,7 @@ function YourWork() {
   }, []);
 
   return (
-    <div className="w-4/5 mx-auto py-10">
+    <div >
       <h1 className="text-4xl text-center text-red-800 mb-6">Your Saved Resumes</h1>
       {resumes.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
