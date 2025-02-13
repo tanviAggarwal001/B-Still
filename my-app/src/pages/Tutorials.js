@@ -50,9 +50,9 @@ const Tutorials = () => {
     <div className="w-4/5 mx-auto py-10">
       {tutorials.map((tutorial) => (
         <div key={tutorial.id} className="mb-12">
-          <h2 className="text-3xl font-bold text-red-800 mb-4">{tutorial.title}</h2>
-          <p className="text-lg text-gray-700 mb-4">{tutorial.description}</p>
-          <ul className="list-disc list-inside text-gray-700 mb-4">
+          <h2 className="text-3xl font-bold text-blue-600 mb-4">{tutorial.title}</h2>
+          <p className="text-lg text-gray-700 mb-2">{tutorial.description}</p>
+          <ul className="text-lg list-disc list-inside text-gray-700 mb-2">
             {tutorial.tips.map((tip, index) => (
               <li key={index}>{tip}</li>
             ))}

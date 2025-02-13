@@ -35,6 +35,7 @@ body {
   .profile-section {
     display: flex;
     flex-wrap: wrap;
+    font-size: 20px;
     justify-content: space-between;
     padding: 10px 0;
   }
@@ -49,6 +50,7 @@ body {
   
   .profile-box label {
     font-weight: bold;
+    color: #028aac;
   }
   
   .separator {
@@ -63,5 +65,12 @@ body {
     background: #f7f7f7;
     padding: 15px;
     margin: 5px 0;
+    font-size: 20px;
     border-radius: 5px;
   }
+  .full-width-box label{
+    font-weight: bold;
+    color: #028aac;
+  }
+
+

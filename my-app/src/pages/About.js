@@ -2,7 +2,7 @@
 import React from "react";
 import "./About.css"; // Move the styles here
 
-function About() {
+function About({ setActiveTab }) {
   return (
     <div className="about-container">
       <h1>About Us</h1>
@@ -49,11 +49,18 @@ function About() {
         Our vision is to revolutionize the job application process by empowering
         job seekers...
       </p>
-      <h2>Get Started</h2>
+      {/* <h2>Get Started</h2>
       <p>
         Ready to create an ATS-friendly resume?{" "}
-        <a href="/create">Start Here</a> and let us help you on your journey to success!
-      </p>
+        <button 
+          type = "button"
+          onClick={() => setActiveTab("Create")} 
+          className="small-rounded"
+        >
+          Get Started
+        </button>
+        and let us help you on your journey to success!
+      </p> */}
     </div>
   );
 }

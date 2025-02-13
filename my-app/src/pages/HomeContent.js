@@ -12,7 +12,7 @@ function HomeContent({ setActiveTab }) {
           Get past automated screening systems and land your dream job with our
           powerful resume builder.
         </p>
-        <button onClick={() => setActiveTab("Create")} style={{ padding: "10px 20px", backgroundColor: "#3498db", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontSize: "16px" }}>Create Your Resume</button>
+        <button onClick={() => setActiveTab("Create")} style={{ padding: "10px 20px", backgroundColor: "#2c3e50", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontSize: "16px" }}>Create Your Resume</button>
       
     
       </div>
@@ -69,9 +69,7 @@ function HomeContent({ setActiveTab }) {
       <div className="hero-section" style={{ marginTop: "50px" }}>
         <h2>Start Building Your Resume Today!</h2>
         <p>Join thousands of job seekers who have improved their resumes with our platform.</p>
-        <a href="/create" className="cta-button">
-          Get Started
-        </a>
+        <button onClick={() => setActiveTab("Create")} style={{ padding: "10px 20px", backgroundColor: "#2c3e50", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontSize: "16px" }}>Get Started</button>
       </div>
     </div>
   );

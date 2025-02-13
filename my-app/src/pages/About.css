@@ -46,10 +46,14 @@ body {
     border-radius: 8px;
     text-align: center;
   }
+  .mission-statement p {
+    color: white;
+  }
   
   .mission-statement h2 {
     margin: 0;
     font-size: 24px;
+    font-weight: bold;
   }
   
   .stats-container {
@@ -76,4 +80,17 @@ body {
   .stat-box p {
     font-size: 18px;
     color: #7f8c8d;
+  }
+
+  .small-rounded {
+    background-color: #c6ecf6ae;
+    color: rgba(0, 0, 0, 0.786); /* White text */
+    font-size: 0.875rem; /* Make text smaller */
+    padding: 6px 8px; /* Adjust padding */
+    border: 1px solid rgba(73, 72, 72, 0.795) ;
+    border-radius: 25px; /* Make it more rounded */
+  }
+  
+  .small-rounded:hover {
+    background-color: rgb(224, 224, 224);
   }

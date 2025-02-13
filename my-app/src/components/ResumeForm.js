@@ -329,7 +329,7 @@ const ResumeForm = ({ onSubmit }) => {
                   const newCerts = [...edu.certifications, { name: '', issuer: '', year: '' }];
                   handleChange('education', 'certifications', newCerts, index);
                 }}
-                className="text-blue-500 mt-2"
+                className="small-rounded-btn text-blue-500 mt-2"
               >
                 Add Certification
               </button>
@@ -338,7 +338,7 @@ const ResumeForm = ({ onSubmit }) => {
               <button
                 type="button"
                 onClick={() => removeListItem('education', index)}
-                className="text-red-500"
+                className="small-rounded-btn text-red-500"
               >
                 Remove Education
               </button>
@@ -348,7 +348,7 @@ const ResumeForm = ({ onSubmit }) => {
         <button
           type="button"
           onClick={() => addListItem('education')}
-          className="text-blue-500"
+          className="small-rounded-btn text-blue-500"
         >
           Add Education
         </button>
@@ -441,7 +441,7 @@ const ResumeForm = ({ onSubmit }) => {
               <button
                 type="button"
                 onClick={() => removeListItem('projects', index)}
-                className="text-red-500"
+                className="small-rounded-btn text-red-500"
               >
                 Remove Project
               </button>
@@ -451,7 +451,7 @@ const ResumeForm = ({ onSubmit }) => {
         <button
           type="button"
           onClick={() => addListItem('projects')}
-          className="text-blue-500"
+          className="small-rounded-btn text-blue-500"
         >
           Add Project
         </button>
@@ -517,7 +517,7 @@ const ResumeForm = ({ onSubmit }) => {
         <button
           type="button"
           onClick={() => addListItem('work_experience')}
-          className="text-blue-500"
+          className="small-rounded-btn text-blue-500"
         >
           Add Work Experience
         </button>
@@ -562,7 +562,7 @@ const ResumeForm = ({ onSubmit }) => {
         <button
           type="button"
           onClick={() => addListItem('achievements')}
-          className="text-blue-500"
+          className="small-rounded-btn text-blue-500"
         >
           Add Achievement
         </button>
@@ -617,7 +617,7 @@ const ResumeForm = ({ onSubmit }) => {
         <button
           type="button"
           onClick={() => addListItem('publications')}
-          className="text-blue-500"
+          className="small-rounded-btn text-blue-500"
         >
           Add Publication
         </button>
@@ -672,7 +672,7 @@ const ResumeForm = ({ onSubmit }) => {
         <button
           type="button"
           onClick={() => addListItem('references')}
-          className="text-blue-500"
+          className="small-rounded-btn text-blue-500"
         >
           Add Reference
         </button>
@@ -682,19 +682,13 @@ const ResumeForm = ({ onSubmit }) => {
       <section className="bg-white p-6 rounded-lg shadow">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-xl font-semibold">Extracurricular Activities</h3>
-          <button
-            type="button"
-            onClick={() => addListItem('extracurricular_activities')}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Add New Activity
-          </button>
+          
         </div>
         
         {formData.extracurricular_activities.map((activity, index) => (
           <div key={index} className="space-y-4 mb-6 pb-6 border-b relative">
             <div className="flex justify-between items-center mb-2">
-              <h4 className="text-lg font-medium">Activity #{index + 1}</h4>
+              <h4 className="text-lg font-medium">Activity {index + 1}</h4>
               {index > 0 && (
                 <button
                   type="button"
@@ -755,6 +749,13 @@ const ResumeForm = ({ onSubmit }) => {
             </div>
           </div>
         ))}
+        <button
+            type="button"
+            onClick={() => addListItem('extracurricular_activities')}
+            className="small-rounded-btn"
+          >
+            Add New Activity
+          </button>
       </section>
 
       <button

@@ -73,6 +73,7 @@ function Home() {
       <ToastContainer />
           <div className="profile">
             <img id="profile-pic" src="default-user.png" alt="User Profile" />
+            
           </div>
           <div className="tab-buttons">
             {[
