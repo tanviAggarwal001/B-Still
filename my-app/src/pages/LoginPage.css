@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    /* width: 100%; */
+    width: 100%;
 }
 
 body {
@@ -16,7 +16,12 @@ body {
 
 .container {
     display: flex;
-    width: 80;
+    /* justify-content: center;
+     */
+     /* align-items: center; */
+     /* justify-items: center; */
+    width: 40vw;
+    margin-left: 30vw;
     background: white;
     padding: 20px;
     border-radius: 10px;
