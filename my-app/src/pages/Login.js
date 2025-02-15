@@ -31,7 +31,7 @@ const LoginPage = () => {
     }
 
     try {
-      const url = "https://b-still-backend.onrender.com/auth/login";
+      const url = "http://localhost:5000/auth/login";
       const response = await fetch(url, {
         method: "POST",
         headers: {

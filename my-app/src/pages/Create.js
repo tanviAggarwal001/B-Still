@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { handleError, handleSuccess } from '../utils';
 import ResumeForm from '../components/ResumeForm';
-// import './Create.css'; // Import normal CSS
 
 function Create() {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,35 +9,38 @@ function Create() {
   const handleAICreate = async (formData) => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://b-still-backend.onrender.com/resume/create', {
+      const response = await fetch('http://localhost:5000/resume/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
-      
-      if (result.success) {
+      console.log('Backend response:', result);
+
+      if (result.success && result.pdfPath) {
         handleSuccess('Resume created successfully!');
-        setPreviewUrl(`https://b-still-backend.onrender.com${result.pdfPath}`);
         
-        // Save to localStorage for YourWork page
+        // Use local backend for preview URL
+        setPreviewUrl(`http://localhost:5000${result.pdfPath}`);
+        
+        // Save to localStorage for "Your Work" page
         const savedResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
         savedResumes.push({
-          title: formData.personal_information.full_name + "'s Resume",
+          title: `${formData.personal_information.full_name}'s Resume`,
           date: new Date().toLocaleDateString(),
           link: result.pdfPath,
-          data: result.texCode
+          data: result.texCode,
         });
         localStorage.setItem('resumes', JSON.stringify(savedResumes));
       } else {
-        handleError(result.message);
+        handleError(result.message || 'Failed to generate resume.');
       }
     } catch (error) {
-      handleError('Failed to create resume');
-      console.error(error);
+      handleError('Failed to create resume.');
+      console.error('Error:', error);
     } finally {
       setIsLoading(false);
     }
@@ -47,12 +49,10 @@ function Create() {
   return (
     <div className="w-4_5 py-10">
       <h1 className="text-4xl text-center text-gray-800 mb-6">Create Your Resume</h1>
-      
-      
       <ResumeForm onSubmit={handleAICreate} />
 
       {isLoading && <div className="text-center mt-4">Creating your resume...</div>}
-      
+
       {previewUrl && (
         <div className="mt-6">
           <iframe src={previewUrl} className="w-full h-screen" title="Resume Preview" />

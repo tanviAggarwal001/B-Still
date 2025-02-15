@@ -1,6 +1,10 @@
 // HomeContent.js
 import React from "react";
 import "./HomeContent.css"; // Move the styles here if needed
+import resumeLogo from '../assets/resumeLogo.svg';
+import Analyse from "../assets/Analyse.svg"
+import Edit from "../assets/Edit.svg"
+
 
 function HomeContent({ setActiveTab }) {
   return (
@@ -21,7 +25,7 @@ function HomeContent({ setActiveTab }) {
       <h1>Why Choose Us?</h1>
       <div className="features-section">
         <div className="feature-box">
-          <img src="resume-icon.png" alt="Resume Icon" />
+        <img src={resumeLogo} style={{width: 40}} alt="Resume Icon" />
           <h3>ATS-Optimized Resumes</h3>
           <p>
             Our AI-powered tool ensures your resume is formatted to pass through
@@ -29,7 +33,8 @@ function HomeContent({ setActiveTab }) {
           </p>
         </div>
         <div className="feature-box">
-          <img src="edit-icon.png" alt="Edit Icon" />
+        <img src={Edit} style={{width: 40}} alt="Edit Icon" />
+
           <h3>Easy Editing</h3>
           <p>
             Modify your resume anytime with our user-friendly editor and built-in
@@ -37,7 +42,8 @@ function HomeContent({ setActiveTab }) {
           </p>
         </div>
         <div className="feature-box">
-          <img src="analytics-icon.png" alt="Analytics Icon" />
+        <img src={Analyse} style={{width: 40}} alt="Analyse Icon" />
+
           <h3>ATS Score Checker</h3>
           <p>
             Analyze your resume and receive an ATS score to improve your chances
