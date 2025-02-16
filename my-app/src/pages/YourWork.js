@@ -20,7 +20,7 @@ function YourWork() {
               <h3 className="text-xl text-gray-800">{resume.title}</h3>
               <p className="text-gray-600">{resume.date}</p>
               <div className="flex justify-between mt-4">
-                <a href={resume.link} className="bg-teal-500 text-white px-4 py-2 rounded">View</a>
+                <a href={`https://b-still-backend2.onrender.com${resume.link}`} className="bg-teal-500 text-white px-4 py-2 rounded">View</a>
                 <button onClick={() => {
                   setResumes(resumes.filter((_, i) => i !== index));
                   localStorage.setItem("resumes", JSON.stringify(resumes.filter((_, i) => i !== index)));
