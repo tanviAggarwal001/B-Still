@@ -10,7 +10,7 @@ WORKDIR /app
 
 # Copy package files and install dependencies using Yarn
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install 
 
 # Copy the rest of your backend source code
 COPY . .
