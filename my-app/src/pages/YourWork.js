@@ -32,7 +32,7 @@ function YourWork() {
       ) : (
         <div className="text-center">
           <h2 className="text-2xl text-gray-800 mb-4">No resumes found!</h2>
-          <a href="/create" className="text-red-600 px-6 py-3 rounded">Create a Resume Now</a>
+          <Link to="/home" onClick={() => setActiveTab("Create")} className="text-red-600 px-6 py-3 rounded">Create a Resume Now</Link>
         </div>
       )}
     </div>
