@@ -9,7 +9,7 @@ function Create() {
   const handleAICreate = async (formData) => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/resume/create', {
+      const response = await fetch('https://b-still-backend2.onrender.com/resume/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ function Create() {
         handleSuccess('Resume created successfully!');
         
         // Use local backend for preview URL
-        setPreviewUrl(`http://localhost:5000${result.pdfPath}`);
+        setPreviewUrl(`https://b-still-backend2.onrender.com${result.pdfPath}`);
         
         // Save to localStorage for "Your Work" page
         const savedResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
