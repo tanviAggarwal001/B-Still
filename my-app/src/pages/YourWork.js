@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
-
-function YourWork() {
+function YourWork({ setActiveTab }) {
     const [resumes, setResumes] = useState([]);
 
   useEffect(() => {

@@ -41,7 +41,7 @@ function Home() {
       case "Create":
         return <h2><Create/></h2>; // Replace with your Create component
       case "Your Work":
-        return <h2><YourWork/></h2>; // Replace with your Your Work component
+        return <YourWork setActiveTab={setActiveTab} />;
       case "Check ATS Score":
         return <h2><CheckATS/></h2>; // Replace with your Check ATS Score component
       case "Tutorials":
