@@ -44,7 +44,7 @@ const SignupPage = () => {
 
       if (success) {
         handleSuccess(message);
-        setTimeout(() => navigate("/home"), 1000);
+        setTimeout(() => navigate("/login"), 1000);
       } else if (error && error.details) {
         handleError(error.details[0]?.message || "An error occurred");
       } else {

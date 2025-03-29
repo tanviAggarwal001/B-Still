@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const resumeSchema = mongoose.Schema({
+    // fileId: { type: mongoose.Schema.Types.ObjectId, required: true },  // GridFS file ID
 	personal_information: {
 		full_name: { type: String, required: true },
 		email: { type: String, required: true },
@@ -35,7 +36,7 @@ const resumeSchema = mongoose.Schema({
 		name: { type: String },
 		description: { type: String },
 		technologies_used: [{ type: String }],
-		link: { type: String }  // Added project link field
+		link: { type: String }
 	}],
 	work_experience: [{
 		role: { type: String },
@@ -68,7 +69,10 @@ const resumeSchema = mongoose.Schema({
 		end_date: { type: String },
 		description: { type: String },
 		achievements: [{ type: String }]
-	}]
+	}],
+	fileId: { type: mongoose.Schema.Types.ObjectId, required: true }, // ✅ Added GridFS file ID
+	userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },  // ✅ Store user ID
+
 }, { timestamps: true });
 
-module.exports = mongoose.model('Resume', resumeSchema);
+module.exports = mongoose.model("Resume", resumeSchema);

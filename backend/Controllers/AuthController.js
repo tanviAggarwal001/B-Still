@@ -53,7 +53,9 @@ const login = async (req, res) => {
       jwtToken,
       email,
       name: user.name,
+      userId: user._id, // ✅ Send userId explicitly
     });
+    
   } catch (error) {
     console.error("❌ Error in Login:", error);
     return res.status(500).json({ message: "Internal Server Error", success: false });

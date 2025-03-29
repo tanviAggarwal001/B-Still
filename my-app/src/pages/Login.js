@@ -41,13 +41,15 @@ const LoginPage = () => {
       });
 
       const result = await response.json();
-      const { success, message, jwtToken, name, error } = result;
+      const { success, message, jwtToken, name, error , userId} = result;
 
       if (success) {
         handleSuccess(message);
         if (jwtToken) {
           localStorage.setItem("token", jwtToken);
           localStorage.setItem("LogginUser", name);
+          localStorage.setItem("userId", userId); // ✅ Store userId
+
           setTimeout(() => {
             navigate("/home");
           }, 1000);

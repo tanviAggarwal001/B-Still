@@ -1,22 +1,23 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
+const { conn } = require('./db');  // Import the connection from your db.js file
 const schema = mongoose.Schema;
-const userschema = new schema ({
+
+const userschema = new schema({
     name: {
-        
-        type : String,
-        required : true,
+        type: String,
+        required: true,
     },
     email: {
-        type : String,
-        required : true,
-        unique : true
+        type: String,
+        required: true,
+        unique: true
     },
-    password:{
-        type : String,
-        required : true,
-
+    password: {
+        type: String,
+        required: true,
     }
-})
+});
 
-const userModel = mongoose.model('users', userschema);
+// Use conn.model instead of mongoose.model
+const userModel = conn.model('users', userschema);
 module.exports = userModel;

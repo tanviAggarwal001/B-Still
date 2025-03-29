@@ -1,4 +1,5 @@
 const Resume = require('../Models/resume');
+const { ensureConnection } = require("../Models/db");
 const askPrompt = require('../config/geminiConfig');
 const fs = require('fs');
 const { exec } = require('child_process');
@@ -6,10 +7,12 @@ const path = require('path');
 
 const createResume = async (req, res) => {
     try {
-        // Step 1: Save resume data to MongoDB
-        const newResume = new Resume(req.body);
-        await newResume.save();
-
+        // Ensure DB connection is ready before proceeding
+        const { bucket } = await ensureConnection();
+        // ✅ Step 1: Create the Resume entry in MongoDB first
+        let newResume = new Resume({ ...req.body, fileId: null,  userId: req.body.userId, });
+        // await newResume.save(); // Now, newResume._id is available
+        
         // Step 2: Read the LaTeX template and prepare the prompt for the Gemini API
         const template = fs.readFileSync(path.join(__dirname, '../template/template.txt'), 'utf8');
         const resumeData = JSON.stringify(req.body, null, 2);
@@ -29,19 +32,16 @@ const createResume = async (req, res) => {
         // Step 3: Save the LaTeX to a temporary file
         const outputPath = path.join(__dirname, '../output');
         if (!fs.existsSync(outputPath)) fs.mkdirSync(outputPath, { recursive: true });
-
         const tempFilePath = path.join(outputPath, `resume_${newResume._id}.tex`);
         fs.writeFileSync(tempFilePath, generatedLatex);
 
         // Step 4: Compile LaTeX to PDF using pdflatex
-        exec(`pdflatex -output-directory="${outputPath}" "${tempFilePath}"`, (error, stdout, stderr) => {
+        exec(`pdflatex -output-directory="${outputPath}" "${tempFilePath}"`, async (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error compiling LaTeX: ${stderr}`);
                 return res.status(500).json({ message: "PDF generation failed", success: false });
             }
-
             console.log(`pdflatex output: ${stdout}`);
-
             const pdfFilePath = path.join(outputPath, `resume_${newResume._id}.pdf`);
 
             // Step 5: Check if the PDF file exists and is valid
@@ -50,16 +50,50 @@ const createResume = async (req, res) => {
                 return res.status(500).json({ message: "PDF file not found or empty", success: false });
             }
 
-            // Step 6: Respond with the generated PDF path and LaTeX code
-            res.status(201).json({
-                message: "Resume created successfully",
-                success: true,
-                resume: newResume,
-                pdfPath: `/output/resume_${newResume._id}.pdf`,
-                texCode: generatedLatex
+            // Step 6: Store PDF in GridFS using the bucket
+            
+            const uploadStream = bucket.openUploadStream(`resume_${newResume._id}.pdf`, {
+                metadata: { userId: req.body.userId } // ✅ Store userId in GridFS
+            });
+            
+            const readStream = fs.createReadStream(pdfFilePath);
+            
+            readStream.pipe(uploadStream);
+
+            uploadStream.on("finish", async () => {
+                if (!uploadStream.id) {
+                    return res.status(500).json({ message: "Failed to retrieve fileId", success: false });
+                }
+            
+                console.log("✅ PDF successfully uploaded to GridFS");
+
+                // Step 5: Create Resume entry **AFTER** file upload
+                newResume = new Resume({
+                    ...req.body,
+                    fileId: uploadStream.id, // ✅ Now fileId is correctly assigned
+                    userId: req.body.userId,
+                    
+                });
+
+                await newResume.save();
+
+                res.status(201).json({
+                    message: "Resume created successfully",
+                    success: true,
+                    resume: { ...newResume._doc, fileId: uploadStream.id },
+                    pdfPath: `/resume/download/${uploadStream.id}`,
+                });
+            
+                // Optional cleanup - uncomment if you want to delete temporary files
+                fs.unlinkSync(tempFilePath);
+                fs.unlinkSync(pdfFilePath);
+            });
+            
+            uploadStream.on("error", (error) => {
+                console.error("Error uploading file:", error);
+                res.status(500).json({ message: "Error uploading PDF to GridFS", success: false });
             });
         });
-
     } catch (error) {
         console.error("Error in createResume:", error);
         res.status(500).json({
