@@ -84,6 +84,7 @@ const LoginPage = () => {
         </form>
         <ToastContainer />
         <p>Don't have an account? <Link to='/signup'>Sign up</Link></p>
+        <p>Admin Login?<Link to='/admin/login'>Login as Admin</Link></p>
         <p>OR</p>
         <div className="google-btn">
           <img src={googleSignIn} alt="Sign up with Google" />

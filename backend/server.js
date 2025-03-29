@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const myResumeRouters = require("./Routes/ResumeRouter");
+const myAdminRoutes = require("./Routes/AdminRoutes");
+const AdminLoginRoutes = require("./Routes/AdminAuth");
+const bcrypt = require("bcryptjs");
 // ✅ Import the proper MongoDB connection & GridFSBucket
 const { conn, gfs, bucket, ensureConnection } = require("./Models/db"); 
 
@@ -33,6 +36,9 @@ const myAuthRouters = require("./Routes/AuthRouter");
 
 app.use("/auth", myAuthRouters);
 app.use("/resume", myResumeRouters);
+app.use("/admin", myAdminRoutes);
+app.use("/api/admin", AdminLoginRoutes);
+
 
 // ✅ Serve PDFs directly from GridFSBucket
 app.get("/resume/download/:id", async (req, res) => {

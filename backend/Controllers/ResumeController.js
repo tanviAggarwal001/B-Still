@@ -9,12 +9,14 @@ const createResume = async (req, res) => {
     try {
         // Ensure DB connection is ready before proceeding
         const { bucket } = await ensureConnection();
+        const { templateId } = req.body;
         // ✅ Step 1: Create the Resume entry in MongoDB first
         let newResume = new Resume({ ...req.body, fileId: null,  userId: req.body.userId, });
         // await newResume.save(); // Now, newResume._id is available
         
         // Step 2: Read the LaTeX template and prepare the prompt for the Gemini API
-        const template = fs.readFileSync(path.join(__dirname, '../template/template.txt'), 'utf8');
+        const template = fs.readFileSync(path.join(__dirname, `../template/${templateId}.txt`), 'utf8');
+
         const resumeData = JSON.stringify(req.body, null, 2);
         const prompt = `Modify the below resume with the following data. Ensure it looks aesthetically similar and add (if empty or insufficient) or modify relevant descriptions in bullet points in all sections. Use minimal formatting wherever necessary. Remove empty sections. Respond with only the LaTeX code, without any formatting or triple backticks.\ntemplate:\n${template}\nData:\n${resumeData}`;
 

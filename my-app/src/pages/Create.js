@@ -5,6 +5,8 @@ import ResumeForm from '../components/ResumeForm';
 function Create() {
   const [isLoading, setIsLoading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [selectedTemplate, setSelectedTemplate] = useState("template1");
+
 
   const handleAICreate = async (formData) => {
     setIsLoading(true);
@@ -16,12 +18,14 @@ function Create() {
         return;
       }
       // Send the resume data to create the AI-generated resume
+      console.log(selectedTemplate);
       const response = await fetch('http://localhost:5000/resume/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          templateId: selectedTemplate,
           userId,  // ✅ Added userId here
           personal_information: formData.personal_information,
           education: formData.education,
@@ -55,6 +59,12 @@ function Create() {
   
   return (
     <div className="max-w-4xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-6">Choose a Resume Template</h1>
+      <div>
+        <button onClick={() => setSelectedTemplate("template1")}>Template 1</button>
+        <button onClick={() => setSelectedTemplate("template2")}>Template 2</button>
+        <button onClick={() => setSelectedTemplate("template3")}>Template 3</button>
+      </div>
       <h1 className="text-2xl font-bold mb-6">Create Your Resume</h1>
       <ResumeForm onSubmit={handleAICreate} />
       

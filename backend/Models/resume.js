@@ -71,7 +71,7 @@ const resumeSchema = mongoose.Schema({
 		achievements: [{ type: String }]
 	}],
 	fileId: { type: mongoose.Schema.Types.ObjectId, required: true }, // ✅ Added GridFS file ID
-	userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },  // ✅ Store user ID
+	userId: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },  // ✅ Store user ID
 
 }, { timestamps: true });
 
